@@ -1,0 +1,44 @@
+body {
+    border:solid;
+    border-radius: 8px;
+    padding: 0.3%;
+    margin: 0.5%;
+}
+
+.mainHeader h1{
+    text-align: center;
+}
+
+aside {
+    display: inline-block;
+    padding: 5px;
+    width: 20%;
+    border: solid;
+}
+
+.btn {
+    display: block;
+    margin-top: 3px;
+}
+
+#myInput {
+    width: 100%;
+    border-radius: 6px;
+    border-width: thin;
+}
+
+section {
+    height: 15%;
+    width:75%;
+    display: inline-block;
+    background-color: greenyellow;
+    margin: 0.5%;
+}
+
+.upperBlock {
+    width: 100%;
+}
+
+.lowerBlock {
+    width: 100%;
+}
