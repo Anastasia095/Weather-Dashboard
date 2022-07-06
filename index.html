@@ -16,7 +16,7 @@
     </header>
     
     <aside id="clickListener">
-        <h2>Search for a City:</h2>
+        <h4>Search for a City:</h4>
         <div class="d-grid gap-2">
             <input id="searchInput" type="text" placeholder="Search..">
         </div>
@@ -31,13 +31,27 @@
     </aside>
     <section>
         <div class="upperBlock">
-            <h1 id="cityName"></h1>
+            <h1 id="cityName">City</h1>
+            <ul>
+                <li class="temp">
+                    Temp:
+                </li>
+                <li class="wind">
+                    Wind:
+                </li>
+                <li class="humidity">
+                    Humidity:
+                </li>
+                <li class="uv">
+                    UV Index:
+                </li>
+            </ul>
         </div>
         <div class="lowerBlock">
             CITY SELECTED PLACEHOLDER
         </div>
     </section>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
     <script src="assets/js/script.js"></script>       
 </body>
 </html>

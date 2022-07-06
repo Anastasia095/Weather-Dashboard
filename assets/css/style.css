@@ -1,10 +1,24 @@
 body {
+    font-family: sans-serif;
     border:solid;
     border-radius: 8px;
     padding: 0.3%;
     margin: 0.5%;
+    height: 100%;
 }
 
+h1{
+    font-weight: bold;
+}
+h4{
+    font-weight: bold;
+}
+
+header {
+    padding: 5px;
+    color:white;
+    background-image: linear-gradient(to right, #536DBC , #230C55); 
+}
 .mainHeader h1{
     text-align: center;
 }
@@ -37,8 +51,17 @@ section {
 
 .upperBlock {
     width: 100%;
+    border: solid;
+    border-width: thin;
+    padding: 0.5%;
+
 }
 
 .lowerBlock {
     width: 100%;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
