@@ -3,18 +3,25 @@ var city;
 var asideSection = document.getElementById("clickListener");
 var date = moment().format('L');
 
-// var history0 = document.getElementById("btn0");
-// var history1 = document.getElementById("btn1");
-// var history2 = document.getElementById("btn2");
-// var history3 = document.getElementById("btn3");
-// var history4 = document.getElementById("btn4");
-// var history5 = document.getElementById("btn5");
-// var history6 = document.getElementById("btn6");
-
+var flipHistory = [];
 for (var y = 0; y < 7; y++) {
-    var historybtn = document.getElementById("btn" + y);
-    historybtn.textContent = localStorage.getItem("History" + y);
+
+    if (localStorage.getItem("History" + y) !== null){
+        flipHistory[y] = localStorage.getItem("History" + y);
+    }
+
 }
+
+console.log(flipHistory);
+var flipHistory1 = flipHistory.reverse();
+console.log(flipHistory1);
+
+for (var j = 0; j < 7; j++) {
+    var historybtn = document.getElementById("btn" + j);
+    historybtn.textContent = flipHistory1[j];
+}
+
+console.log(flipHistory);
 
 var latLon = {
     APIKey: "a837c12832ce1b1f143bd6108aa84e92",
