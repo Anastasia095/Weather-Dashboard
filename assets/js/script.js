@@ -21,7 +21,7 @@ var latLon = {
 
     fetchLocation: function () {
         fetch(
-            "http://api.openweathermap.org/geo/1.0/direct?q="
+            "https://api.openweathermap.org/geo/1.0/direct?q="
             + city
             + "&limit=1&appid="
             + this.APIKey
@@ -88,13 +88,8 @@ var weather = {
             const { humidity } = data.daily[k];
             const { icon } = data.daily[k].weather[0];
 
-            //converting date to regular format
-            // const milliseconds = dt * 1000;
-            // const dateObject = new Date(milliseconds);
-            // const humanDateFormat = dateObject.toLocaleString(); 
-            // console.log(humanDateFormat);
 
-            document.getElementById("forecastDate" + [k]).innerText = moment.unix(dt).format("MM/DD/YYYY");;
+            document.getElementById("forecastDate" + [k]).innerText = moment.unix(dt).format("MM/DD/YYYY");
             document.getElementById("temp" + [k]).innerText = "Temp: " + day + " °F";
             document.getElementById("wind" + [k]).innerText = "Wind: " + wind_speed + " MPH";
             document.getElementById("hmidity" + [k]).innerText = "Humidity: " + humidity + "%";
