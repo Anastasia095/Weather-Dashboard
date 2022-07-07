@@ -23,16 +23,16 @@
     </header>
 
     <div class="flexwrapper">
-        <aside id="clickListener">
+        <aside>
             <h4>Search for a City:</h4>
             <div class="d-grid gap-2">
                 <input id="searchInput" type="text" placeholder="Search..">
             </div>
             <div class="d-grid gap-2">
-                <button type="button" class="btn btn-primary btn-sm">Search</button>
+                <button type="button" class="btn btn-primary btn-sm" id="clickListener">Search</button>
             </div>
             <hr>
-            <div class="d-grid gap-2">
+            <div class="d-grid gap-2" id="historyListener">
                 <button class="btn btn-secondary btn-sm" id="btn0" type="button"></button>
                 <button class="btn btn-secondary btn-sm" id="btn1" type="button"></button>
                 <button class="btn btn-secondary btn-sm" id="btn2" type="button"></button>
@@ -63,6 +63,7 @@
                     </li>
                     <li class="uv">
                         UV Index:
+                        <button class="uvCondition"></button>
                     </li>
                 </ul>
             </div>

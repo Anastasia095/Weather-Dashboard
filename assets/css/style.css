@@ -121,3 +121,11 @@ ul {
   #forecastDate1 {
     font-weight: bold;
   }
+
+  .uvCondition {
+  font-size: small;  
+  border-width: thin;
+  border-radius: 6px;
+  border-style: none;
+  }
+

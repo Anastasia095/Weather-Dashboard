@@ -1,27 +1,30 @@
 // °
 var city;
 var asideSection = document.getElementById("clickListener");
+var historySection = document.getElementById("historyListener");
 var date = moment().format('L');
 
-var flipHistory = [];
-for (var y = 0; y < 7; y++) {
+console.log(historySection);
 
-    if (localStorage.getItem("History" + y) !== null){
-        flipHistory[y] = localStorage.getItem("History" + y);
+function historyRefresh() {
+
+    var flipHistory = [];
+    for (var y = 0; y < 7; y++) {
+
+        if (localStorage.getItem("History" + y) !== null) {
+            flipHistory[y] = localStorage.getItem("History" + y);
+        }
+
     }
-
+    var flipHistory1 = flipHistory.reverse();
+    for (var j = 0; j < 7; j++) {
+        var historybtn = document.getElementById("btn" + j);
+        historybtn.textContent = flipHistory1[j];
+    }
 }
 
-console.log(flipHistory);
-var flipHistory1 = flipHistory.reverse();
-console.log(flipHistory1);
+historyRefresh();
 
-for (var j = 0; j < 7; j++) {
-    var historybtn = document.getElementById("btn" + j);
-    historybtn.textContent = flipHistory1[j];
-}
-
-console.log(flipHistory);
 
 var latLon = {
     APIKey: "a837c12832ce1b1f143bd6108aa84e92",
@@ -80,7 +83,17 @@ var weather = {
         document.querySelector(".temp").innerText = "Temp: " + temp + " °F";
         document.querySelector(".wind").innerText = "Wind: " + wind_speed + " MPH";
         document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
-        document.querySelector(".uv").innerText = "UV Index: " + uvi;
+        //I didn't find any docs on ranges for each category in this assignment so I use this as reference => https://ichef.bbci.co.uk/news/640/cpsprodpb/90CD/production/_113096073_newoptimised-uv_index-nc.png 
+        document.querySelector(".uvCondition").innerText = uvi;
+        if (uvi < 3) {
+            document.querySelector(".uvCondition").setAttribute("style", "background-color:green;")
+        }
+        else if (uvi > 3 && uvi < 10) {
+            document.querySelector(".uvCondition").setAttribute("style", "background-color:yellow;")
+        }
+        else {
+            document.querySelector(".uvCondition").setAttribute("style", "background-color:red; color: black")
+        }
         document.querySelector(".icon").src =
             "https://openweathermap.org/img/wn/" + icon + ".png";
 
@@ -133,8 +146,35 @@ asideSection.addEventListener('click', function (event) {
 
     localStorage.setItem("Index", i);
     latLon.fetchLocation();
+    historyRefresh();
 
 });
 
+historySection.addEventListener('click', function (event) {
+    if (event.target.tagName != 'BUTTON')
+    return;
+
+    if (localStorage.getItem("Index") !== null){
+        i = localStorage.getItem("Index");
+    }
+
+    city = event.target.innerText;
+    document.getElementById("cityName").innerText = city;    
+    localStorage.setItem("History" + [i], city);
+
+    if (i < 7) {
+        i++;
+    }
+    else {
+        i = 0;
+    }
+    
+    localStorage.setItem("Index", i);
+    console.log(event.target.tagName)
+
+    latLon.fetchLocation();
+    historyRefresh();
+
+});
 
 
