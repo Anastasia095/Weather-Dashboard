@@ -3,9 +3,17 @@ var city;
 var asideSection = document.getElementById("clickListener");
 var date = moment().format('L');
  
-for (var j = 0; j < 5; j++){
-    var forecastDates = document.getElementById("container" + j);
-    // forecastDates.textContent = moment().add(j+1, 'days').calendar(); 
+// var history0 = document.getElementById("btn0");
+// var history1 = document.getElementById("btn1");
+// var history2 = document.getElementById("btn2");
+// var history3 = document.getElementById("btn3");
+// var history4 = document.getElementById("btn4");
+// var history5 = document.getElementById("btn5");
+// var history6 = document.getElementById("btn6");
+
+for (var y = 0; y < 7; y++){
+    var historybtn = document.getElementById("btn"+y);
+    historybtn.textContent = localStorage.getItem("History"+y);
 }
 
 var latLon = {
@@ -98,18 +106,30 @@ var weather = {
     }
 };
 
-
+var i = 0;
 asideSection.addEventListener('click', function(event){
+
+    if (localStorage.getItem("Index") !== null)
+        i = localStorage.getItem("Index");
+
     var selectedButton = event.target;
     if (selectedButton.tagName != 'BUTTON') 
     return;
+
     city = document.getElementById("searchInput").value;
     var displayCity = document.getElementById("cityName");
     displayCity.textContent = city + " (" + date + ")";
 
-    localStorage.setItem("LastSearched", city);
-    //console.log("LastSearched", city)
+    localStorage.setItem("History"+[i], city);
 
+    if(i < 7){
+        i++;
+    }
+    else {
+        i = 0;
+    }
+
+    localStorage.setItem("Index", i);
     latLon.fetchLocation();
 
 });
