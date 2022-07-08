@@ -16,10 +16,11 @@ function historyRefresh() {
         }
 
     }
-    var flipHistory1 = flipHistory.reverse();
+    ///var flipHistory1 = flipHistory.reverse();
     for (var j = 0; j < 7; j++) {
         var historybtn = document.getElementById("btn" + j);
-        historybtn.textContent = flipHistory1[j];
+        if(flipHistory[j] != "undefined") 
+            historybtn.textContent = flipHistory[j];
     }
 }
 
@@ -135,7 +136,26 @@ asideSection.addEventListener('click', function (event) {
     var displayCity = document.getElementById("cityName");
     displayCity.textContent = city + " (" + date + ")";
 
-    localStorage.setItem("History" + [i], city);
+    var arrayHistory = [];
+
+    for (var h = 0; h < 7; h++) {
+
+        if (localStorage.getItem("History" + h) !== null) {
+            arrayHistory[h] = localStorage.getItem("History" + h);
+        }
+
+    }
+
+    arrayHistory.unshift(city);
+
+    for (var h = 0; h < 7; h++) {
+
+        //arrayHistory[h] = localStorage.setItem("History" + h);
+        localStorage.setItem("History" + [h], arrayHistory[h]);
+
+    }
+
+    //localStorage.setItem("History" + [i], city);
 
     if (i < 7) {
         i++;
@@ -154,22 +174,9 @@ historySection.addEventListener('click', function (event) {
     if (event.target.tagName != 'BUTTON')
     return;
 
-    if (localStorage.getItem("Index") !== null){
-        i = localStorage.getItem("Index");
-    }
-
     city = event.target.innerText;
     document.getElementById("cityName").innerText = city;    
-    localStorage.setItem("History" + [i], city);
-
-    if (i < 7) {
-        i++;
-    }
-    else {
-        i = 0;
-    }
-    
-    localStorage.setItem("Index", i);
+  
     console.log(event.target.tagName)
 
     latLon.fetchLocation();
